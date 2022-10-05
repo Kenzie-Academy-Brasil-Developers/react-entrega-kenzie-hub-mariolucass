@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { bounceDown, bounceUp } from "../../styles/animations";
 
 export const LoginContainer = styled.div`
+  inset: 0;
+  position: fixed;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -8,14 +11,20 @@ export const LoginContainer = styled.div`
   align-items: center;
 
   h1 {
+    margin-bottom: 20px;
     color: var(--color-primary);
+    animation: 1.5s ${bounceDown};
+    margin-bottom: 50px;
   }
 `;
 
 export const FormLogin = styled.form`
+  animation: 1.5s ${bounceUp};
+  width: 90%;
+  max-width: 380px;
   color: var(--gray-0);
   background-color: var(--gray-3);
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -23,4 +32,10 @@ export const FormLogin = styled.form`
   align-items: center;
   border-radius: 4px;
   gap: 0.5rem;
+  padding-top: 50px;
+
+  span {
+    color: var(--gray-1);
+    font-size: 0.85rem;
+  }
 `;

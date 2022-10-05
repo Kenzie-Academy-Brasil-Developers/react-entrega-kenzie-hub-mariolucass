@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const InputStyled = styled.input`
+  width: 100%;
+  max-width: 350px;
+  height: 42px;
+
   border-radius: 5px;
   background-color: var(--gray-2);
   padding: 1rem;
   border: none;
-  width: 320px;
-  height: 32px;
+
   color: var(--gray-0);
 
   ::placeholder {
@@ -16,6 +19,7 @@ export const InputStyled = styled.input`
 
 export const LabelStyled = styled.label`
   width: 100%;
+  max-width: 350px;
   font-size: 12px;
   font-weight: 300;
 `;

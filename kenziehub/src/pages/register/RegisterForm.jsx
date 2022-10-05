@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../../components/Buttons";
 import Input from "../../components/Inputs";
+import Select from "../../components/Selects";
 import { FormRegister } from "./styles";
 
 const RegisterForm = () => {
@@ -79,9 +80,9 @@ const RegisterForm = () => {
         }}
       />
 
-      <select name="" id=""></select>
+      <Select name="" id=""></Select>
 
-      <Button type="submit" texto="Cadastrar" />
+      <Button type="submit" texto="Cadastrar" tipo={2} />
     </FormRegister>
   );
 };

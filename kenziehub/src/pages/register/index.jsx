@@ -10,7 +10,7 @@ const Register = () => {
         <h1>Kenzie Hub</h1>
 
         <Link to="/">
-          <Button tipo={2} texto={"Voltar"} />
+          <Button tipo={3} texto={"Voltar"} />
         </Link>
       </div>
 

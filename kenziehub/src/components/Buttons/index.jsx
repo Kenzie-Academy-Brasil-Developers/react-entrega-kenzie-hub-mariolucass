@@ -1,10 +1,10 @@
-import { ButtonPrimario, ButtonSecundario } from "./styles";
+import { ButtonPrimario } from "./styles";
 
 const Button = ({ tipo, texto, type }) => {
-  return tipo === 1 ? (
-    <ButtonPrimario type={type}>{texto}</ButtonPrimario>
-  ) : (
-    <ButtonSecundario type={type}>{texto}</ButtonSecundario>
+  return (
+    <ButtonPrimario type={type} tipo={tipo}>
+      {texto}
+    </ButtonPrimario>
   );
 };
 

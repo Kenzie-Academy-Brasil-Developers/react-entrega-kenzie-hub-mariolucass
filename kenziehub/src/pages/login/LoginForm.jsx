@@ -3,17 +3,40 @@ import { FormLogin } from "./styles";
 import { Link } from "react-router-dom";
 import Button from "../../components/Buttons";
 import { useState } from "react";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  const formSchema = yup.object().shape({
+    email: yup.string().required("Email obrigatório"),
+    password: yup.string().required("Senha obrigatória"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  });
+
+  const handleLogin = (data) => {
+    console.log(data);
+    console.log(errors);
   };
 
   return (
-    <FormLogin action="" onSubmit={handleLogin}>
+    <FormLogin
+      action=""
+      onSubmit={() => {
+        handleSubmit(handleLogin());
+      }}
+    >
       <h4>Login</h4>
 
       <Input
