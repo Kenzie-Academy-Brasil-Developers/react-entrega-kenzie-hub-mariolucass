@@ -3,7 +3,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Buttons";
 import { apiHeader } from "../../services/axios";
-import { DashboardContainer } from "./styles";
+import {
+  DashboardContainer,
+  DashboardHeader,
+  DashboardMain,
+  DashboardWelcome,
+} from "./styles";
 
 const Dashboard = () => {
   const [nameUser, setNameUser] = useState("");
@@ -21,8 +26,9 @@ const Dashboard = () => {
 
   return (
     <DashboardContainer>
-      <header>
+      <DashboardHeader>
         <h1>Kenzie Hub</h1>
+
         <Link to="/login">
           {" "}
           <Button
@@ -30,19 +36,23 @@ const Dashboard = () => {
             onClick={() => {
               window.localStorage.clear();
             }}
+            tipo={3}
           />
         </Link>
-      </header>
-      <div>
-        <h2>Olá, {nameUser}</h2>
+      </DashboardHeader>
+
+      <DashboardWelcome>
+        <h2>Olá, {nameUser}.</h2>
         <span>{categoryUser}</span>
-      </div>
-      <div>
+      </DashboardWelcome>
+
+      <DashboardMain>
         <h3>Que pena! Estamos em desenvolvimento :(</h3>
+
         <p>
           Nossa aplicação está em desenvolvimento, em breve teremos novidades
         </p>
-      </div>
+      </DashboardMain>
     </DashboardContainer>
   );
 };
