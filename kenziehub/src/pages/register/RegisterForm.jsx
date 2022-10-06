@@ -86,9 +86,10 @@ const RegisterForm = () => {
 
       <Select
         name=""
-        id=""
+        id="courseModule"
         text={"Selecionar módulo"}
         array={arrayOptions}
+        register={register}
       ></Select>
 
       <Button type="submit" texto="Cadastrar" tipo={2} />

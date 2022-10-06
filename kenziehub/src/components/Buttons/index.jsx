@@ -1,7 +1,7 @@
 import { ButtonPrimario } from "./styles";
 
-const Button = ({ tipo, texto, type }) => (
-  <ButtonPrimario type={type} tipo={tipo}>
+const Button = ({ tipo, texto, type, onClick }) => (
+  <ButtonPrimario type={type} tipo={tipo} onClick={onClick}>
     {texto}
   </ButtonPrimario>
 );

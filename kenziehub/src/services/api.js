@@ -4,27 +4,28 @@ export const LoginApi = (data) => {
   api
     .post("/sessions", data)
     .then((res) => {
-      messageSucess(res);
+      localStorage.setItem("token:KenzieHub", res.data.token);
+      localStorage.setItem("id:KenzieHub", res.data.user.id);
     })
-    .catch((err) => messageError(err.response.data.message));
+    .catch((err) => messageError(err.response));
 };
 
 export const RegisterApi = (data) => {
   api
     .post("/users", data)
     .then((res) => {
-      messageSucess(res);
+      messageSucess(res.data);
     })
     .catch((err) => messageError(err.response.data.message));
 };
 
-export const GetUserApi = (data) => {
-  apiHeader
+export const GetUserApi = async () => {
+  const user = await apiHeader
     .get("/profile")
-    .then((res) => {
-      messageSucess(res);
-    })
+    .then((res) => res.data)
     .catch((err) => messageError(err.response.data.message));
+
+  return user;
 };
 
 const messageError = (message) => {

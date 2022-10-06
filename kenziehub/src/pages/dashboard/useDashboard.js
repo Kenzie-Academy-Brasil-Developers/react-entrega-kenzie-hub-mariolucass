@@ -1,5 +1,1 @@
-import { GetUserApi } from "../../services/api";
-
-export const useDashboard = () => {
-  GetUserApi();
-};
+export const useDashboard = async () => {};
