@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const token = localStorage.getItem("@token:kenzieHub");
+
 export const api = axios.create({
   baseURL: "https://kenziehub.herokuapp.com",
   timeout: 1000,
@@ -8,5 +10,5 @@ export const api = axios.create({
 export const apiHeader = axios.create({
   baseURL: "https://kenziehub.herokuapp.com",
   timeout: 1000,
-  headers: { "X-Custom-Header": "foobar" },
+  headers: { Authorization: `Bearer ${token}` },
 });

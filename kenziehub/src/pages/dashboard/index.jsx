@@ -1,10 +1,10 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Button from "../../components/Buttons";
 import { DashboardContainer } from "./styles";
 
 const Dashboard = () => {
-  const [nameUser, setNameUser] = useState("");
-  const [categoryUser, setCategoryUser] = useState("");
+  // const [nameUser, setNameUser] = useState("");
+  // const [categoryUser, setCategoryUser] = useState("");
 
   return (
     <DashboardContainer>
@@ -13,8 +13,8 @@ const Dashboard = () => {
         <Button texto={"Sair"} />
       </header>
       <div>
-        <h2>Olá, {nameUser}</h2>
-        <span>{categoryUser}</span>
+        {/* <h2>Olá, {nameUser}</h2>
+        <span>{categoryUser}</span> */}
       </div>
       <div>
         <h3>Que pena! Estamos em desenvolvimento :(</h3>

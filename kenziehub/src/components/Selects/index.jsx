@@ -1,11 +1,10 @@
-import { LabelStyled } from "../Inputs/styles";
-import { SelectStyled } from "./styles";
+import { SelectStyled, LabelStyled } from "./styles";
 
 const Select = ({ text, array }) => {
-  const opcoes = array.map((elem, i) => {
+  const opcoes = array.map((e) => {
     return (
-      <option value={elem.name} key={elem.id}>
-        {elem.name}
+      <option value={e.name} key={e.id}>
+        {e.name}
       </option>
     );
   });
