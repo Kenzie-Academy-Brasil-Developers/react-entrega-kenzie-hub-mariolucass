@@ -13,17 +13,26 @@ const GlobalStyle = createGlobalStyle`
     --gray-3:#212529;
     --gray-4:#121214;
 
+    --sucess: #3FE864;
+    --error: #E83F5B;
+
     --font-family:'Inter', sans-serif;  
 }
+
+.Toastify__toast-container{
+    width: 40%;
+    max-width:250px;
+  }
 
 *{
     margin:0;
     padding:0;
-    box-sizing:border-box
+    box-sizing:border-box;
 }
 
 body{
     background-color: #000000;
+    background-image:url(/src/assets/wave.svg);
     width:100vw;
     height:100vh;
     font-family: var(--font-family);

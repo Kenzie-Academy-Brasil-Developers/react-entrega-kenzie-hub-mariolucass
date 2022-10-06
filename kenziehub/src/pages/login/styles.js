@@ -31,8 +31,12 @@ export const FormLogin = styled.form`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  gap: 0.5rem;
+  gap: 1.5rem;
   padding-top: 50px;
+
+  .Link {
+    width: 100%;
+  }
 
   span {
     color: var(--gray-1);

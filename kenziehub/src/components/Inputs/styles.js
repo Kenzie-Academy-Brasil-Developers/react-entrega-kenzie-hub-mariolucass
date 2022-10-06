@@ -7,7 +7,7 @@ export const InputStyled = styled.input`
 
   border-radius: 5px;
   background-color: var(--gray-2);
-  padding: 1rem;
+  padding-left: 10px;
   border: none;
 
   color: var(--gray-0);
@@ -18,6 +18,9 @@ export const InputStyled = styled.input`
 `;
 
 export const LabelStyled = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
   width: 100%;
   max-width: 350px;
   font-size: 12px;

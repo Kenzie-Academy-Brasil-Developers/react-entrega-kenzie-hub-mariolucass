@@ -1,4 +1,3 @@
-import { bounceInRight } from "react-animations";
 import styled from "styled-components";
 
 export const ButtonPrimario = styled.button`
