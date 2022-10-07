@@ -47,4 +47,16 @@ export const FormRegister = styled.form`
   gap: 1.5rem;
   padding-top: 50px;
   animation: 1.3s ${bounceUp};
+
+  h3 {
+    width: 100%;
+    text-align: center;
+  }
+
+  span {
+    width: 100%;
+    color: var(--gray-1);
+    font-size: 0.85rem;
+    text-align: center;
+  }
 `;

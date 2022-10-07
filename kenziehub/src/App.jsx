@@ -10,7 +10,7 @@ function App() {
       <Router>
         <RoutesMain />
         <GlobalStyle />
-        <ToastContainer limit={3} />
+        <ToastContainer limit={3} autoClose={2000} />
       </Router>
     </>
   );

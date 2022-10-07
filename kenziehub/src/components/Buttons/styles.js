@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ButtonPrimario = styled.button`
   width: ${(props) => (props.tipo !== 3 ? "100%" : "80px")};
   max-width: 350px;
-  height: 40px;
+  min-height: 40px;
 
   background-color: ${(props) => {
     if (props.tipo === 1) {

@@ -8,7 +8,6 @@ import { registerSchema } from "../../validations/registerUser";
 
 import { FormRegister } from "./styles";
 
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRegister } from "./useRegister";
 
@@ -30,11 +29,10 @@ const RegisterForm = () => {
     resolver: yupResolver(registerSchema),
   });
 
-  errors.email?.message && toast.error("oi", { limit: 1 });
-
   return (
     <FormRegister action="" onSubmit={handleSubmit(useRegister)}>
-      <h3>Register</h3>
+      <h3>Crie sua conta</h3>
+      <span>Rapido e gratis vamos nessa.</span>
 
       <Input
         id="nome"
@@ -43,6 +41,7 @@ const RegisterForm = () => {
         text={"Nome"}
         register={register}
       />
+      <span>{errors.nome?.message}</span>
 
       <Input
         id="email"
@@ -51,6 +50,7 @@ const RegisterForm = () => {
         text={"Email"}
         register={register}
       />
+      <span>{errors.email?.message}</span>
 
       <Input
         id="password"
@@ -59,6 +59,7 @@ const RegisterForm = () => {
         text={"Senha"}
         register={register}
       />
+      <span>{errors.password?.message}</span>
 
       <Input
         id="confirmPass"
@@ -67,6 +68,7 @@ const RegisterForm = () => {
         text={"Confirmar senha"}
         register={register}
       />
+      <span>{errors.confirmPass?.message}</span>
 
       <Input
         id="bio"
@@ -75,6 +77,7 @@ const RegisterForm = () => {
         text={"Bio"}
         register={register}
       />
+      <span>{errors.bio?.message}</span>
 
       <Input
         id="contact"
@@ -83,6 +86,7 @@ const RegisterForm = () => {
         text={"Contato"}
         register={register}
       />
+      <span>{errors.contact?.message}</span>
 
       <Select
         name=""
@@ -91,6 +95,7 @@ const RegisterForm = () => {
         array={arrayOptions}
         register={register}
       ></Select>
+      <span>{errors.courseModule?.message}</span>
 
       <Button type="submit" texto="Cadastrar" tipo={2} />
     </FormRegister>

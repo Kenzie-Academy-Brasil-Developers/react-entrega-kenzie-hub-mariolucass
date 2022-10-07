@@ -42,12 +42,12 @@ const Dashboard = () => {
       </DashboardHeader>
 
       <DashboardWelcome>
-        <h2>Olá, {nameUser}.</h2>
-        <span>{categoryUser}</span>
+        <h2>Olá, {nameUser}</h2>
+        <span>Voce esta no: {categoryUser}</span>
       </DashboardWelcome>
 
       <DashboardMain>
-        <h3>Que pena! Estamos em desenvolvimento :(</h3>
+        <h3>Que pena! Estamos em desenvolvimento 😕</h3>
 
         <p>
           Nossa aplicação está em desenvolvimento, em breve teremos novidades

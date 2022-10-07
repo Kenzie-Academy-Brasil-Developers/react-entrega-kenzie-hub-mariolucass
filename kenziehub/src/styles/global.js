@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import img from "../assets/wave.svg";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -31,11 +32,14 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body{
-    background-color: #000000;
-    background-image:url(/src/assets/wave.svg);
+    background-image: url(${img});
+    background-repeat:no-repeat;
+    background-position:bottom;
+    background-color: var(--gray-4);
     width:100vw;
     height:100vh;
     font-family: var(--font-family);
+   
 }
 `;
 

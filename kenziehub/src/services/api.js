@@ -1,20 +1,23 @@
+import { toast } from "react-toastify";
 import { api, apiHeader } from "./axios";
 
 export const LoginApi = (data) => {
   api
     .post("/sessions", data)
     .then((res) => {
+      messageSuccess("Login efetuado com sucesso.");
       localStorage.setItem("token:KenzieHub", res.data.token);
       localStorage.setItem("id:KenzieHub", res.data.user.id);
     })
-    .catch((err) => messageError(err.response));
+    .catch((err) => toast.error(err.data.message));
 };
 
 export const RegisterApi = (data) => {
   api
     .post("/users", data)
     .then((res) => {
-      messageSucess(res.data);
+      messageSuccess("Registro efetuado com sucesso.");
+      return res.data;
     })
     .catch((err) => messageError(err.response.data.message));
 };
@@ -29,9 +32,9 @@ export const GetUserApi = async () => {
 };
 
 const messageError = (message) => {
-  console.log(message);
+  toast.error(message);
 };
 
-const messageSucess = (message) => {
-  console.log(message);
+const messageSuccess = (message) => {
+  toast.success(message);
 };
