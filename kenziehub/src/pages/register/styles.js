@@ -8,6 +8,7 @@ export const RegisterContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
+  margin-top: 50px;
   justify-content: center;
   align-items: center;
 
@@ -47,6 +48,7 @@ export const FormRegister = styled.form`
   gap: 1.5rem;
   padding-top: 50px;
   animation: 1.3s ${bounceUp};
+  margin-bottom: 50px;
 
   h3 {
     width: 100%;

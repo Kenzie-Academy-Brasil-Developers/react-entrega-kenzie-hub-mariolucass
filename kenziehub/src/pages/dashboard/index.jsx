@@ -5,10 +5,13 @@ import Button from "../../components/Buttons";
 import { apiHeader } from "../../services/axios";
 import {
   DashboardContainer,
+  DashboardFooter,
   DashboardHeader,
   DashboardMain,
   DashboardWelcome,
 } from "./styles";
+import BurguerKenzie from "../../assets/BurguerKenzie.PNG";
+import NuKenzie from "../../assets/NuKenzie.PNG";
 
 const Dashboard = () => {
   const [nameUser, setNameUser] = useState("");
@@ -35,6 +38,7 @@ const Dashboard = () => {
             texto={"Sair"}
             onClick={() => {
               window.localStorage.clear();
+              window.location.assign("/login");
             }}
             tipo={3}
           />
@@ -43,7 +47,7 @@ const Dashboard = () => {
 
       <DashboardWelcome>
         <h2>Olá, {nameUser}</h2>
-        <span>Voce esta no: {categoryUser}</span>
+        <span>Você está no: {categoryUser}</span>
       </DashboardWelcome>
 
       <DashboardMain>
@@ -53,6 +57,35 @@ const Dashboard = () => {
           Nossa aplicação está em desenvolvimento, em breve teremos novidades
         </p>
       </DashboardMain>
+
+      <DashboardFooter>
+        <div>
+          {" "}
+          <span>Enquanto isso conheça nossos outros sites:</span>
+        </div>
+        <div className="imgFooter">
+          <img src={NuKenzie} alt="NuKenzie" />
+        </div>
+        <a
+          href="https://nukenzie-wheat.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="nuKenzie"
+        >
+          NuKenzie
+        </a>
+        <div className="imgFooter">
+          <img src={BurguerKenzie} alt="BurguerKenzie" />
+        </div>
+        <a
+          href="https://burguerkenzie-xi.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="burguerKenzie"
+        >
+          BurguerKenzie
+        </a>
+      </DashboardFooter>
     </DashboardContainer>
   );
 };
