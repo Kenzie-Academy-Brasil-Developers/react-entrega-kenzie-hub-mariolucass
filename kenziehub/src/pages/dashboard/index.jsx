@@ -1,8 +1,9 @@
 // import { useState } from "react";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
 import { apiHeader } from "../../services/axios";
+
 import {
   DashboardContainer,
   DashboardFooter,
@@ -10,22 +11,35 @@ import {
   DashboardMain,
   DashboardWelcome,
 } from "./styles";
-import BurguerKenzie from "../../assets/BurguerKenzie.PNG";
-import NuKenzie from "../../assets/NuKenzie.PNG";
 
 const Dashboard = () => {
   const [nameUser, setNameUser] = useState("");
   const [categoryUser, setCategoryUser] = useState("");
+  const [techs, setTechs] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     apiHeader
       .get("/profile")
       .then((res) => {
+        console.log(res);
         setNameUser(res.data.name);
         setCategoryUser(res.data.course_module);
+        setTechs(res.data.techs);
       })
       .catch((err) => console.log(err.response.data.message));
   }, []);
+
+  const tecnologies = techs.forEach((e) => {
+    return (
+      <li>
+        <h3>{e.title}</h3>
+        <span>{e.status}</span>
+        <button></button>
+      </li>
+    );
+  });
 
   return (
     <DashboardContainer>
@@ -33,12 +47,11 @@ const Dashboard = () => {
         <h1>Kenzie Hub</h1>
 
         <Link to="/login">
-          {" "}
           <Button
             texto={"Sair"}
             onClick={() => {
               window.localStorage.clear();
-              window.location.assign("/login");
+              navigate("/login");
             }}
             tipo={3}
           />
@@ -51,41 +64,17 @@ const Dashboard = () => {
       </DashboardWelcome>
 
       <DashboardMain>
-        <h3>Que pena! Estamos em desenvolvimento 😕</h3>
+        <div>
+          <h2>Tecnologias </h2>
+          <Button texto={"+"} tipo={3}></Button>
+        </div>
 
-        <p>
-          Nossa aplicação está em desenvolvimento, em breve teremos novidades
-        </p>
+        <div>
+          <ul className="tecnologiesList">{tecnologies}</ul>
+        </div>
       </DashboardMain>
 
-      <DashboardFooter>
-        <div>
-          {" "}
-          <span>Enquanto isso conheça nossos outros sites:</span>
-        </div>
-        <div className="imgFooter">
-          <img src={NuKenzie} alt="NuKenzie" />
-        </div>
-        <a
-          href="https://nukenzie-wheat.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nuKenzie"
-        >
-          NuKenzie
-        </a>
-        <div className="imgFooter">
-          <img src={BurguerKenzie} alt="BurguerKenzie" />
-        </div>
-        <a
-          href="https://burguerkenzie-xi.vercel.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="burguerKenzie"
-        >
-          BurguerKenzie
-        </a>
-      </DashboardFooter>
+      <DashboardFooter></DashboardFooter>
     </DashboardContainer>
   );
 };

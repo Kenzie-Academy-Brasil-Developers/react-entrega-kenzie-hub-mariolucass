@@ -9,7 +9,7 @@ import { loginSchema } from "../../validations/loginUser";
 import { FormLogin } from "./styles";
 
 import "react-toastify/dist/ReactToastify.css";
-import { useLogin } from "./useLogin";
+import { LoginApi } from "../../services/api";
 
 const LoginForm = () => {
   const {
@@ -21,7 +21,7 @@ const LoginForm = () => {
   });
 
   return (
-    <FormLogin action="" onSubmit={handleSubmit(useLogin)}>
+    <FormLogin action="" onSubmit={handleSubmit((data) => LoginApi(data))}>
       <h3>Login</h3>
 
       <Input

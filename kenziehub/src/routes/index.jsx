@@ -8,17 +8,20 @@ const RoutesMain = () => (
   <>
     <Routes>
       <Route
-        element={token ? <Navigate to="/dashboard" /> : <Login />}
         path="/"
+        element={token ? <Navigate to="/dashboard" /> : <Login />}
       ></Route>
+
       <Route
-        element={token ? <Navigate to="/dashboard" /> : <Register />}
         path="/register"
+        element={token ? <Navigate to="/dashboard" /> : <Register />}
       ></Route>
+
       <Route
-        element={!token ? <Navigate to="/login" /> : <Dashboard />}
         path="/dashboard"
+        element={!token ? <Navigate to="/login" /> : <Dashboard />}
       ></Route>
+
       <Route element={<Navigate to="/" />} path="*"></Route>
     </Routes>
   </>

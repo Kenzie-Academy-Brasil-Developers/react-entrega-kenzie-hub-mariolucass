@@ -25,13 +25,15 @@ const GlobalStyle = createGlobalStyle`
     max-width:250px;
   }
 
-*{
+*
+{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-body{
+body
+{
     background-image: url(${img});
     background-repeat:no-repeat;
     background-position:bottom;

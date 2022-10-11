@@ -1,14 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api, apiHeader } from "./axios";
 
 export const LoginApi = (data) => {
+  const navigate = useNavigate();
+
   api
     .post("/sessions", data)
     .then((res) => {
       messageSuccess("Login efetuado com sucesso.");
       localStorage.setItem("token:KenzieHub", res.data.token);
       localStorage.setItem("id:KenzieHub", res.data.user.id);
-      window.location.assign("/dashboard");
+    })
+    .then(() => {
+      navigate("/dashboard", { replace: true });
     })
     .catch((err) => toast.error(err.response.data.message));
 };
@@ -18,7 +23,6 @@ export const RegisterApi = (data) => {
     .post("/users", data)
     .then((res) => {
       messageSuccess("Registro efetuado com sucesso.");
-      window.location.assign("/login");
       return res.data;
     })
     .catch((err) => toast.error(err.response.data.message));
