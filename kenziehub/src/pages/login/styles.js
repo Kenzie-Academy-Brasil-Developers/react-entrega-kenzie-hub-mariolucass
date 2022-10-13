@@ -36,6 +36,21 @@ export const FormLogin = styled.form`
 
   .Link {
     width: 100%;
+    max-width: 350px;
+    min-height: 40px;
+
+    background-color: var(--gray-1);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 0.3rem;
+
+    color: #ffffff;
+    font-family: var(--font-family);
+    cursor: pointer;
   }
 
   span {

@@ -1,6 +1,6 @@
 // import { useState } from "react";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
 import { apiHeader } from "../../services/axios";
 
@@ -23,7 +23,6 @@ const Dashboard = () => {
     apiHeader
       .get("/profile")
       .then((res) => {
-        console.log(res);
         setNameUser(res.data.name);
         setCategoryUser(res.data.course_module);
         setTechs(res.data.techs);
@@ -46,16 +45,14 @@ const Dashboard = () => {
       <DashboardHeader>
         <h1>Kenzie Hub</h1>
 
-        <Link to="/login">
-          <Button
-            texto={"Sair"}
-            onClick={() => {
-              window.localStorage.clear();
-              navigate("/login");
-            }}
-            tipo={3}
-          />
-        </Link>
+        <Button
+          texto={"Sair"}
+          onClick={() => {
+            window.localStorage.clear();
+            navigate("/");
+          }}
+          tipo={3}
+        />
       </DashboardHeader>
 
       <DashboardWelcome>

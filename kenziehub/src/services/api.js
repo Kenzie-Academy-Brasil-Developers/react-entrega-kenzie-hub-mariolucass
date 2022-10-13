@@ -1,19 +1,13 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { api, apiHeader } from "./axios";
 
 export const LoginApi = (data) => {
-  const navigate = useNavigate();
-
   api
     .post("/sessions", data)
     .then((res) => {
       messageSuccess("Login efetuado com sucesso.");
       localStorage.setItem("token:KenzieHub", res.data.token);
       localStorage.setItem("id:KenzieHub", res.data.user.id);
-    })
-    .then(() => {
-      navigate("/dashboard", { replace: true });
     })
     .catch((err) => toast.error(err.response.data.message));
 };

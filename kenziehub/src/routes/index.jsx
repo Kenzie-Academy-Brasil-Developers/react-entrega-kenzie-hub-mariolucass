@@ -1,30 +1,26 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard from "../pages/dashboard";
 import Register from "../pages/register";
 import Login from "../pages/login";
+import { useEffect } from "react";
 
 const token = localStorage.getItem("token:KenzieHub");
-const RoutesMain = () => (
-  <>
-    <Routes>
-      <Route
-        path="/"
-        element={token ? <Navigate to="/dashboard" /> : <Login />}
-      ></Route>
+const RoutesMain = () => {
+  const navigate = useNavigate();
 
-      <Route
-        path="/register"
-        element={token ? <Navigate to="/dashboard" /> : <Register />}
-      ></Route>
+  useEffect(() => {
+    token ? navigate("/dashboard") : navigate("/");
+  }, []);
 
-      <Route
-        path="/dashboard"
-        element={!token ? <Navigate to="/login" /> : <Dashboard />}
-      ></Route>
-
-      <Route element={<Navigate to="/" />} path="*"></Route>
-    </Routes>
-  </>
-);
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/dashboard" element={<Dashboard />}></Route>
+      </Routes>
+    </>
+  );
+};
 
 export default RoutesMain;
