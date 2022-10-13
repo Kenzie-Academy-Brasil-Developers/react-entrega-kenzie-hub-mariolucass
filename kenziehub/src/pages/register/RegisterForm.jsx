@@ -9,7 +9,7 @@ import { registerSchema } from "../../validations/registerUser";
 import { FormRegister } from "./styles";
 
 import "react-toastify/dist/ReactToastify.css";
-import { useRegister } from "./useRegister";
+import { RegisterApi } from "../../services/api";
 
 const RegisterForm = () => {
   const arrayOptions = [
@@ -30,7 +30,11 @@ const RegisterForm = () => {
   });
 
   return (
-    <FormRegister action="" onSubmit={handleSubmit(useRegister)}>
+    <FormRegister
+      onSubmit={handleSubmit((data) => {
+        RegisterApi(data);
+      })}
+    >
       <h3>Crie sua conta</h3>
       <span>Rapido e gratis vamos nessa.</span>
 

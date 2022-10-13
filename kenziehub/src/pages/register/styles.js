@@ -16,6 +16,25 @@ export const RegisterContainer = styled.div`
     top: 0%;
   }
 
+  .Link {
+    width: 80px;
+    max-width: 350px;
+    min-height: 40px;
+
+    background-color: var(--gray-3);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 0.3rem;
+
+    color: #ffffff;
+    font-family: var(--font-family);
+    cursor: pointer;
+  }
+
   .header__form {
     display: flex;
     justify-content: space-between;
