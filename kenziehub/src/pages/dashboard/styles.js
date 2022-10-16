@@ -50,12 +50,57 @@ export const DashboardMain = styled.div`
     justify-content: space-between;
     margin: 0 auto;
     align-items: center;
+
+    button {
+      width: 32px;
+      height: 32px;
+
+      background-color: var(--gray-3);
+      border: none;
+      border-radius: 0.3rem;
+
+      color: #ffffff;
+      font-family: var(--font-family);
+      cursor: pointer;
+    }
   }
 
   .divListaTechs {
     background-color: var(--gray-3);
+    display: flex;
     height: 400px;
     border-radius: 0.5rem;
+    align-items: center;
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 90%;
+      list-style: none;
+      padding: 1rem;
+      gap: 1rem;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        background-color: var(--gray-4);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        align-items: center;
+
+        :hover {
+          background-color: var(--gray-2);
+          cursor: pointer;
+        }
+
+        button {
+          border: none;
+          background: none;
+          cursor: pointer;
+        }
+      }
+    }
   }
 `;
 
