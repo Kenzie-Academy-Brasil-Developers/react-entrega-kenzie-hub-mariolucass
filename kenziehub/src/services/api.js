@@ -12,16 +12,6 @@ export const LoginApi = (data) => {
     .catch((err) => toast.error(err.response.data.message));
 };
 
-export const RegisterApi = (data) => {
-  api
-    .post("/users", data)
-    .then((res) => {
-      messageSuccess("Registro efetuado com sucesso.");
-      return res.data;
-    })
-    .catch((err) => toast.error(err.response.data.message));
-};
-
 export const GetUserApi = async () => {
   const user = await apiHeader
     .get("/profile")

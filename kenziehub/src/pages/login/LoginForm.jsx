@@ -1,6 +1,6 @@
 import Button from "../../components/Buttons";
 import Input from "../../components/Inputs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -9,24 +9,11 @@ import { loginSchema } from "../../validations/loginUser";
 import { FormLogin } from "./styles";
 
 import "react-toastify/dist/ReactToastify.css";
-import { api } from "../../services/axios";
-import { toast } from "react-toastify";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
-
-  const LoginApi = (data) => {
-    api
-      .post("/sessions", data)
-      .then((res) => {
-        toast.success("Login efetuado com sucesso.");
-        localStorage.setItem("token:KenzieHub", res.data.token);
-        localStorage.setItem("id:KenzieHub", res.data.user.id);
-        console.log("teste");
-        navigate("/dashboard");
-      })
-      .catch((err) => toast.error(err.response.data.message));
-  };
+  const { LoginApi } = useContext(UserContext);
 
   const {
     register,

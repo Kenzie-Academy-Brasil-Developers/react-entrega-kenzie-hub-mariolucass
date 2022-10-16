@@ -43,7 +43,20 @@ export const DashboardMain = styled.div`
   border-radius: 3rem;
   animation: 1.5s ${bounceLeft};
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  .divTechs {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .divListaTechs {
+    background-color: var(--gray-3);
+    height: 400px;
+    border-radius: 0.5rem;
+  }
 `;
 
 export const DashboardHeader = styled.header`
@@ -59,11 +72,10 @@ export const DashboardHeader = styled.header`
   border-radius: 3rem;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
-  
   h1 {
     color: var(--color-primary);
   }
-  
+
   @media (min-width: 1024px) {
     align-items: center;
     justify-content: space-evenly;

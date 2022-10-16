@@ -18,3 +18,4 @@ const Select = ({ text, array, register, id }) => {
 };
 
 export default Select;
+

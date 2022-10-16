@@ -1,44 +1,18 @@
-// import { useState } from "react";
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
-import { apiHeader } from "../../services/axios";
+import { UserContext } from "../../contexts/UserContext";
 
 import {
   DashboardContainer,
-  DashboardFooter,
   DashboardHeader,
   DashboardMain,
   DashboardWelcome,
 } from "./styles";
 
 const Dashboard = () => {
-  const [nameUser, setNameUser] = useState("");
-  const [categoryUser, setCategoryUser] = useState("");
-  const [techs, setTechs] = useState([]);
-
   const navigate = useNavigate();
-
-  useEffect(() => {
-    apiHeader
-      .get("/profile")
-      .then((res) => {
-        setNameUser(res.data.name);
-        setCategoryUser(res.data.course_module);
-        setTechs(res.data.techs);
-      })
-      .catch((err) => console.log(err.response.data.message));
-  }, []);
-
-  const tecnologies = techs.forEach((e) => {
-    return (
-      <li>
-        <h3>{e.title}</h3>
-        <span>{e.status}</span>
-        <button></button>
-      </li>
-    );
-  });
+  const { nameUser, categoryUser, techs } = useContext(UserContext);
 
   return (
     <DashboardContainer>
@@ -61,17 +35,23 @@ const Dashboard = () => {
       </DashboardWelcome>
 
       <DashboardMain>
-        <div>
+        <div className="divTechs">
           <h2>Tecnologias </h2>
           <Button texto={"+"} tipo={3}></Button>
         </div>
 
-        <div>
-          <ul className="tecnologiesList">{tecnologies}</ul>
+        <div className="divListaTechs">
+          <ul className="tecnologiesList">
+            {techs.length ? (
+              techs
+            ) : (
+              <div>
+                <h3>Não há tecnologias, experimente adicionar uma nova!</h3>
+              </div>
+            )}
+          </ul>
         </div>
       </DashboardMain>
-
-      <DashboardFooter></DashboardFooter>
     </DashboardContainer>
   );
 };

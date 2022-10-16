@@ -9,9 +9,12 @@ import { registerSchema } from "../../validations/registerUser";
 import { FormRegister } from "./styles";
 
 import "react-toastify/dist/ReactToastify.css";
-import { RegisterApi } from "../../services/api";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const RegisterForm = () => {
+  const { RegisterApi } = useContext(UserContext);
+
   const arrayOptions = [
     { name: "Primeiro Módulo", id: 1 },
     { name: "Segundo Módulo", id: 2 },
@@ -30,11 +33,7 @@ const RegisterForm = () => {
   });
 
   return (
-    <FormRegister
-      onSubmit={handleSubmit((data) => {
-        RegisterApi(data);
-      })}
-    >
+    <FormRegister onSubmit={handleSubmit(RegisterApi)}>
       <h3>Crie sua conta</h3>
       <span>Rapido e gratis vamos nessa.</span>
 
