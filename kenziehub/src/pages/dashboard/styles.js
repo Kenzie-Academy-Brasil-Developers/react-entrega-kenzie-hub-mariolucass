@@ -12,7 +12,7 @@ export const DashboardWelcome = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
+  max-width: 1000px;
   margin: 0 auto;
   height: 120px;
   padding: 1rem;
@@ -21,8 +21,15 @@ export const DashboardWelcome = styled.div`
   gap: 1rem;
   animation: 1.5s ${bounceLeft};
   text-align: center;
-  border-radius: 3rem;
+  background-color: #21252960;
+  border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+  @media (min-width: 1023px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   span {
     font-size: 1rem;
@@ -34,26 +41,31 @@ export const DashboardMain = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
+  max-width: 1000px;
   margin: 0 auto;
   height: 200px;
   padding: 1rem;
   border-top: 1px solid var(--gray-3);
   gap: 1rem;
-  border-radius: 3rem;
   animation: 1.5s ${bounceLeft};
   text-align: center;
+  background-color: #21252960;
+  border-radius: 0.5rem;
+
+  @media (min-width: 1023px) {
+    height: 500px;
+  }
 
   .divTechs {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
     align-items: center;
 
     button {
-      width: 32px;
-      height: 32px;
+      width: 48px;
+      height: 48px;
 
       background-color: var(--gray-3);
       border: none;
@@ -68,9 +80,15 @@ export const DashboardMain = styled.div`
   .divListaTechs {
     background-color: var(--gray-3);
     display: flex;
+    width: 100%;
     height: 400px;
     border-radius: 0.5rem;
     align-items: center;
+    text-align: center;
+
+    div {
+      width: 100%;
+    }
 
     ul {
       display: flex;
@@ -80,21 +98,34 @@ export const DashboardMain = styled.div`
       list-style: none;
       padding: 1rem;
       gap: 1rem;
+      overflow-y: auto;
 
       li {
         display: flex;
         justify-content: space-between;
         background-color: var(--gray-4);
+        height: 64px;
         padding: 0.5rem;
         border-radius: 0.5rem;
         align-items: center;
 
         :hover {
           background-color: var(--gray-2);
-          cursor: pointer;
         }
 
+        h3 {
+          width: 35%;
+          text-align: left;
+        }
+
+        span {
+          position: relative;
+          left: 15%;
+          font-size: 0.75rem;
+          color: var(--gray-1);
+        }
         button {
+          height: 100%;
           border: none;
           background: none;
           cursor: pointer;

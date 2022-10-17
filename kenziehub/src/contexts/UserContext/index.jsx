@@ -40,7 +40,6 @@ export const UserProvider = ({ children }) => {
   const LoginApi = async (data) => {
     try {
       const response = await api.post("/sessions", data);
-      console.log(response);
       const token = response.data.token;
 
       localStorage.setItem("token:KenzieHub", token);
@@ -55,10 +54,9 @@ export const UserProvider = ({ children }) => {
 
   const RegisterApi = async (data) => {
     try {
-      const response = await api.post("/users", data);
-      console.log(response);
-
+      await api.post("/users", data);
       toast.success("Registro efetuado com sucesso.");
+      navigate("/");
     } catch (error) {
       toast.error(error.response.data.message);
     }
@@ -72,6 +70,7 @@ export const UserProvider = ({ children }) => {
         nameUser,
         categoryUser,
         techs,
+        setTechs,
       }}
     >
       {children}

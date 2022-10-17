@@ -27,5 +27,15 @@ export const BackgroundModal = styled.div`
     background-color: var(--gray-3);
     padding: 1rem;
     border-radius: 0.5rem;
+
+    button {
+      background-color: var(--gray-3);
+      border: none;
+      border-radius: 0.3rem;
+
+      color: #ffffff;
+      font-family: var(--font-family);
+      cursor: pointer;
+    }
   }
 `;

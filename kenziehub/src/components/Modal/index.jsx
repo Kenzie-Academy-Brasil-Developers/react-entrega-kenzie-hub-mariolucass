@@ -9,7 +9,7 @@ import Select from "../Selects";
 import { BackgroundModal } from "./styles";
 
 const Modal = () => {
-  const { modal, setModal, CreateTechs } = useContext(TechContext);
+  const { setModal, CreateTechs } = useContext(TechContext);
 
   const {
     register,
@@ -25,11 +25,14 @@ const Modal = () => {
     { id: 3, name: "Avançado" },
   ];
 
-  console.log(errors);
-
   return (
     <BackgroundModal>
-      <form onSubmit={handleSubmit(CreateTechs)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          setModal(false);
+          CreateTechs(data);
+        })}
+      >
         <div className="headModal">
           <h4>Cadastrar tecnologia</h4>
           <button
@@ -47,6 +50,9 @@ const Modal = () => {
           text={"Nome"}
           register={register}
         />
+
+        <span>{errors.title?.message}</span>
+
         <Select
           name=""
           id="status"
@@ -54,6 +60,8 @@ const Modal = () => {
           text={"Selecionar Status"}
           register={register}
         />
+
+        <span>{errors.status?.message}</span>
 
         <Button type="submit" tipo={1} texto="Cadastrar Tecnologia" />
       </form>
