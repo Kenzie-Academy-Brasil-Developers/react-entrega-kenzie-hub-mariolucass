@@ -1,44 +1,58 @@
-// import { useState } from "react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
-import { apiHeader } from "../../services/axios";
+import Modal from "../../components/Modal";
+import Lixeira from "../../assets/Vector.png";
+import { TechContext } from "../../contexts/TechContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import {
   DashboardContainer,
-  DashboardFooter,
   DashboardHeader,
   DashboardMain,
   DashboardWelcome,
 } from "./styles";
+import { apiHeader } from "../../services/axios";
 
 const Dashboard = () => {
-  const [nameUser, setNameUser] = useState("");
-  const [categoryUser, setCategoryUser] = useState("");
-  const [techs, setTechs] = useState([]);
-
   const navigate = useNavigate();
+  const { nameUser, categoryUser, techs, setTechs } = useContext(UserContext);
+  const { DeleteTechs, EditTechs, setModal, modal, isFiltered, listNew } =
+    useContext(TechContext);
 
   useEffect(() => {
-    apiHeader
-      .get("/profile")
-      .then((res) => {
-        setNameUser(res.data.name);
-        setCategoryUser(res.data.course_module);
-        setTechs(res.data.techs);
-      })
-      .catch((err) => console.log(err.response.data.message));
-  }, []);
+    if (isFiltered) {
+      const updateList = async () => {
+        const response = await apiHeader.get("/profile");
+        setTechs(response.data.techs);
+      };
+      updateList();
+    }
+  }, [listNew]);
 
-  const tecnologies = techs.forEach((e) => {
-    return (
-      <li>
-        <h3>{e.title}</h3>
-        <span>{e.status}</span>
-        <button></button>
-      </li>
-    );
-  });
+  const tecnologies = isFiltered
+    ? listNew.map((element) => {
+        return (
+          <li key={element.id}>
+            <h3>{element.title}</h3>
+            <span>{element.status}</span>
+            <button onClick={() => DeleteTechs(element.id)}>
+              <img src={Lixeira} alt="lixeira" />
+            </button>
+          </li>
+        );
+      })
+    : techs.map((element) => {
+        return (
+          <li key={element.id}>
+            <h3>{element.title}</h3>
+            <span>{element.status}</span>
+            <button onClick={() => DeleteTechs(element.id)}>
+              <img src={Lixeira} alt="lixeira" />
+            </button>
+          </li>
+        );
+      });
 
   return (
     <DashboardContainer>
@@ -61,17 +75,32 @@ const Dashboard = () => {
       </DashboardWelcome>
 
       <DashboardMain>
-        <div>
+        <div className="divTechs">
           <h2>Tecnologias </h2>
-          <Button texto={"+"} tipo={3}></Button>
+          <button
+            onClick={() => {
+              setModal(true);
+            }}
+          >
+            +
+          </button>
         </div>
 
-        <div>
-          <ul className="tecnologiesList">{tecnologies}</ul>
+        <div className="divListaTechs">
+          {techs.length ? (
+            <ul className="tecnologiesList">{tecnologies}</ul>
+          ) : (
+            <div>
+              <h3>
+                Voce não tem tecnologias registradas 😕, experimente adicionar
+                uma nova!!
+              </h3>
+            </div>
+          )}
         </div>
       </DashboardMain>
 
-      <DashboardFooter></DashboardFooter>
+      {modal && <Modal />}
     </DashboardContainer>
   );
 };

@@ -1,24 +1,22 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Dashboard from "../pages/dashboard";
 import Register from "../pages/register";
 import Login from "../pages/login";
-import { useEffect } from "react";
+import { UserProvider } from "../contexts/UserContext";
+import { TechProvider } from "../contexts/TechContext";
 
-const token = localStorage.getItem("token:KenzieHub");
 const RoutesMain = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    token ? navigate("/dashboard") : navigate("/");
-  }, []);
-
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/dashboard" element={<Dashboard />}></Route>
-      </Routes>
+      <UserProvider>
+        <TechProvider>
+          <Routes>
+            <Route path="/" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+          </Routes>
+        </TechProvider>
+      </UserProvider>
     </>
   );
 };
