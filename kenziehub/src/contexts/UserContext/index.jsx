@@ -6,11 +6,10 @@ import { api, apiHeader } from "../../services/axios";
 export const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
-  const navigate = useNavigate();
-
   const [nameUser, setNameUser] = useState("");
   const [categoryUser, setCategoryUser] = useState("");
   const [techs, setTechs] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadUser = async () => {
@@ -19,6 +18,7 @@ export const UserProvider = ({ children }) => {
       if (token) {
         try {
           const response = await apiHeader.get("/profile");
+
           setNameUser(response.data.name);
           setCategoryUser(response.data.course_module);
           setTechs(response.data.techs);
@@ -35,6 +35,7 @@ export const UserProvider = ({ children }) => {
     };
 
     loadUser();
+    /* eslint-disable */
   }, []);
 
   const LoginApi = async (data) => {
@@ -43,6 +44,10 @@ export const UserProvider = ({ children }) => {
       const token = response.data.token;
 
       localStorage.setItem("token:KenzieHub", token);
+
+      setNameUser(response.data.user.name);
+      setCategoryUser(response.data.user.course_module);
+      setTechs(response.data.user.techs);
 
       toast.success("Login efetuado com sucesso.");
 

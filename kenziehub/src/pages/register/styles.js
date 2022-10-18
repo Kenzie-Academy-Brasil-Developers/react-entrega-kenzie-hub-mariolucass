@@ -12,10 +12,6 @@ export const RegisterContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (min-width: 767px) {
-    top: 0%;
-  }
-
   .Link {
     width: 80px;
     max-width: 350px;
@@ -56,6 +52,7 @@ export const FormRegister = styled.form`
   max-width: 380px;
   justify-content: flex-start;
   align-items: flex-start;
+  height: 700px;
   overflow-y: auto;
   color: var(--gray-0);
   background-color: var(--gray-3);
@@ -64,8 +61,8 @@ export const FormRegister = styled.form`
   flex-direction: column;
   margin: 0 auto;
   border-radius: 4px;
-  gap: 1.5rem;
-  padding-top: 50px;
+  gap: 0.5rem;
+  padding-top: 30px;
   animation: 1.3s ${bounceUp};
   margin-bottom: 50px;
 

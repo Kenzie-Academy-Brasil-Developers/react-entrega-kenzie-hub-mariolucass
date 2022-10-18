@@ -86,7 +86,7 @@ export const DashboardMain = styled.div`
     align-items: center;
     text-align: center;
 
-    div {
+    .noTechs {
       width: 100%;
     }
 
@@ -124,11 +124,26 @@ export const DashboardMain = styled.div`
           font-size: 0.75rem;
           color: var(--gray-1);
         }
-        button {
-          height: 100%;
-          border: none;
-          background: none;
-          cursor: pointer;
+
+        .liButtons {
+          height: 75%;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+
+          button {
+            height: 75%;
+            border: none;
+            background: none;
+            cursor: pointer;
+
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              filter: invert(80%);
+            }
+          }
         }
       }
     }
