@@ -66,7 +66,7 @@ const RegisterForm = () => {
 
       <Input
         id="confirmPass"
-        type="text"
+        type="password"
         placeholder={"Digite novamente sua senha"}
         text={"Confirmar senha"}
         register={register}
@@ -98,6 +98,7 @@ const RegisterForm = () => {
         array={arrayOptions}
         register={register}
       ></Select>
+
       <span>{errors.courseModule?.message}</span>
 
       <Button type="submit" texto="Cadastrar" tipo={2} />

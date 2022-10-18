@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Buttons";
 import Modal from "../../components/Modal";
 import Lixeira from "../../assets/Vector.png";
+import Editar from "../../assets/Vector2.png";
 import { TechContext } from "../../contexts/TechContext";
 import { UserContext } from "../../contexts/UserContext";
 
@@ -28,6 +29,7 @@ const Dashboard = () => {
       };
       updateList();
     }
+    /* eslint-disable */
   }, [listNew]);
 
   const tecnologies = isFiltered
@@ -36,9 +38,15 @@ const Dashboard = () => {
           <li key={element.id}>
             <h3>{element.title}</h3>
             <span>{element.status}</span>
-            <button onClick={() => DeleteTechs(element.id)}>
-              <img src={Lixeira} alt="lixeira" />
-            </button>
+            <div className="liButtons">
+              <button onClick={() => DeleteTechs(element.id)}>
+                <img src={Editar} alt="editar" />
+              </button>
+
+              <button onClick={() => EditTechs(element.id)}>
+                <img src={Lixeira} alt="lixeira" />
+              </button>
+            </div>
           </li>
         );
       })
@@ -47,9 +55,16 @@ const Dashboard = () => {
           <li key={element.id}>
             <h3>{element.title}</h3>
             <span>{element.status}</span>
-            <button onClick={() => DeleteTechs(element.id)}>
-              <img src={Lixeira} alt="lixeira" />
-            </button>
+
+            <div className="liButtons">
+              <button onClick={() => DeleteTechs(element.id)}>
+                <img src={Editar} alt="editar" />
+              </button>
+
+              <button onClick={() => DeleteTechs(element.id)}>
+                <img src={Lixeira} alt="lixeira" />
+              </button>
+            </div>
           </li>
         );
       });
@@ -90,7 +105,7 @@ const Dashboard = () => {
           {techs.length ? (
             <ul className="tecnologiesList">{tecnologies}</ul>
           ) : (
-            <div>
+            <div className="noTechs">
               <h3>
                 Voce não tem tecnologias registradas 😕, experimente adicionar
                 uma nova!!

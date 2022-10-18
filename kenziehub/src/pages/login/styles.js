@@ -31,8 +31,8 @@ export const FormLogin = styled.form`
   justify-content: center;
   align-items: center;
   border-radius: 4px;
-  gap: 1.5rem;
-  padding-top: 50px;
+  gap: 0.5rem;
+  padding-top: 30px;
 
   .Link {
     width: 100%;
