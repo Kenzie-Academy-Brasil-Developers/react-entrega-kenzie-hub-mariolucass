@@ -38,7 +38,7 @@ const RegisterForm = () => {
       <span>Rapido e gratis vamos nessa.</span>
 
       <Input
-        id="nome"
+        id="name"
         type="text"
         placeholder={"Digite aqui seu nome"}
         text={"Nome"}
@@ -93,7 +93,7 @@ const RegisterForm = () => {
 
       <Select
         name=""
-        id="courseModule"
+        id="course_module"
         text={"Selecionar módulo"}
         array={arrayOptions}
         register={register}
