@@ -53,7 +53,7 @@ export const UserProvider = ({ children }) => {
 
       navigate("/dashboard");
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 

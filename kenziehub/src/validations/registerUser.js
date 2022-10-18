@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const registerSchema = yup.object().shape({
-  nome: yup.string().required("Nome obrigatório."),
+  name: yup.string().required("Nome obrigatório."),
 
   email: yup.string().email().required("Email obrigatório."),
 
@@ -23,5 +23,5 @@ export const registerSchema = yup.object().shape({
 
   contact: yup.string().required("Contato obrigatorio."),
 
-  courseModule: yup.string().required("Curso obrigatorio."),
+  course_module: yup.string().required("Curso obrigatorio."),
 });
