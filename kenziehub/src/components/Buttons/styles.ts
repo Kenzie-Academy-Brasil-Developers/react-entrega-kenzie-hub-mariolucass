@@ -1,19 +1,23 @@
 import styled from "styled-components";
 
-export const ButtonPrimario = styled.button`
-  width: ${(props) => (props.tipo !== 3 ? "100%" : "80px")};
-  max-width: 350px;
-  min-height: 40px;
+interface Props{
+  
+}
 
-  background-color: ${(props) => {
-    if (props.tipo === 1) {
+export const ButtonPrimario = styled.button`
+  width: ${({ kind } : ) => (kind !== 3 ? "100%" : "80px")};
+  background-color: ${({ kind }) => {
+    if (kind === 1) {
       return "var(--color-primary)";
-    } else if (props.tipo === 2) {
+    } else if (kind === 2) {
       return "var(--gray-1)";
     } else {
       return "var(--gray-3)";
     }
   }};
+
+  max-width: 350px;
+  min-height: 40px;
 
   border: none;
   border-radius: 0.3rem;

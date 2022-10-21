@@ -1,25 +1,26 @@
 import Button from "../../components/Buttons";
 import Input from "../../components/Inputs";
 import { Link } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginSchema } from "../../validations/loginUser";
-
 import { FormLogin } from "./styles";
-
 import "react-toastify/dist/ReactToastify.css";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
+import { UseUserContext } from "../../contexts/UserContext";
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
 
 const LoginForm = () => {
-  const { LoginApi } = useContext(UserContext);
+  const { LoginApi } = UseUserContext();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserLogin>({
     resolver: yupResolver(loginSchema),
   });
 
@@ -47,7 +48,8 @@ const LoginForm = () => {
 
       <span>{errors.password?.message}</span>
 
-      <Button type="submit" tipo={1} texto="Entrar" />
+      <Button type="submit" kind={1} text="Entrar" onClick={() => {}} />
+
       <span>Ainda não possui uma conta? </span>
 
       <Link to="/register" className="Link">

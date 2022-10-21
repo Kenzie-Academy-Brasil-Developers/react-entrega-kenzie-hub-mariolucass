@@ -1,6 +1,14 @@
 import { InputStyled, LabelStyled } from "./styles";
 
-const Input = ({ type, placeholder, text, id, register }) => (
+interface IInputs {
+  type: string;
+  placeholder: string;
+  text: string;
+  id: string;
+  register: (id: string) => void;
+}
+
+const Input = ({ type, placeholder, text, id, register }: IInputs) => (
   <>
     <LabelStyled htmlFor={id}>
       {text}

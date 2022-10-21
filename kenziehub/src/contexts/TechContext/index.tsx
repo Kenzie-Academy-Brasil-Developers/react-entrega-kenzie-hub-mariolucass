@@ -1,18 +1,30 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { apiHeader } from "../../services/axios";
-import { UserContext } from "../UserContext";
+import { UseUserContext } from "../UserContext";
 
-export const TechContext = createContext({});
+export const TechContext = createContext<ITechContext>({} as ITechContext);
 
-export const TechProvider = ({ children }) => {
-  const { techs } = useContext(UserContext);
+interface ITechProviderProps {
+  children: ReactNode;
+}
 
-  const [modal, setModal] = useState(false);
-  const [isFiltered, setIsFiltered] = useState(false);
+interface ITechContext {
+  CreateTechs: (data: string) => void;
+  DeleteTechs: (data: string) => void;
+  EditTechs: (id: string, data: string) => void;
+  setModal: (arg0: boolean) => void;
+  isFiltered: boolean;
+  modal: boolean;
+}
+
+export const TechProvider = ({ children }: ITechProviderProps) => {
+  const { techs } = UseUserContext();
+  const [modal, setModal] = useState<boolean>(false);
+  const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [listNew, setListNew] = useState(techs);
 
-  const CreateTechs = async (data) => {
+  const CreateTechs = async (data: string) => {
     try {
       const response = await apiHeader.post(`/users/techs`, data);
       setListNew([...techs, response.data]);
@@ -22,7 +34,7 @@ export const TechProvider = ({ children }) => {
     }
   };
 
-  const DeleteTechs = async (id) => {
+  const DeleteTechs = async (id: string) => {
     try {
       await apiHeader.delete(`/users/techs/${id}`);
       setListNew(techs.filter((e) => e.id !== id));
@@ -32,7 +44,7 @@ export const TechProvider = ({ children }) => {
     }
   };
 
-  const EditTechs = async (id, data) => {
+  const EditTechs = async (id: string, data: string) => {
     try {
       const response = await apiHeader.put(`/users/techs/${id}`, data);
       setIsFiltered(true);
@@ -56,4 +68,8 @@ export const TechProvider = ({ children }) => {
       {children}
     </TechContext.Provider>
   );
+};
+
+export const UseTechContext = () => {
+  return useContext(TechContext);
 };

@@ -1,6 +1,11 @@
 import { SelectStyled, LabelStyled } from "./styles";
 
-const Select = ({ text, array, register, id }) => {
+interface ISelect {
+  text: string;
+  id: string;
+}
+
+const Select = ({ text, array, register, id }: ISelect) => {
   const opcoes = array.map((e) => {
     return (
       <option value={e.name} key={e.id}>
@@ -18,4 +23,3 @@ const Select = ({ text, array, register, id }) => {
 };
 
 export default Select;
-
