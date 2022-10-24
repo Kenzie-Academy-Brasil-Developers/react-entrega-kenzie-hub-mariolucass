@@ -50,7 +50,7 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
 
   const EditTechs = async (id: string, data: IUserCreateTech) => {
     try {
-      const response = await apiHeader.put(`/users/techs/${id}`, data);
+      await apiHeader.put(`/users/techs/${id}`, data);
       setIsFiltered(true);
     } catch (error: unknown) {
       toast.error((error as Error).message);

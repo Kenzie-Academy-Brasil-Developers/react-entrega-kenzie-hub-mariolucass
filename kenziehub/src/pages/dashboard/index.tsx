@@ -18,15 +18,14 @@ import { apiHeader } from "../../services/axios";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { nameUser, categoryUser, techs, setTechs } = useContext(UserContext);
+  const { nameUser, categoryUser, techs } = useContext(UserContext);
   const { DeleteTechs, EditTechs, setModal, modal, isFiltered, listNew } =
     useContext(TechContext);
 
   useEffect(() => {
     if (isFiltered) {
       const updateList = async () => {
-        const response = await apiHeader.get("/profile");
-        setTechs(response.data.techs);
+        await apiHeader.get("/profile");
       };
       updateList();
     }

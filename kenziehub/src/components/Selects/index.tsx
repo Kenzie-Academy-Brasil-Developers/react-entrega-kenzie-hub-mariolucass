@@ -13,7 +13,7 @@ interface ISelectProps {
   register: UseFormRegister<FieldValues>;
 }
 
-const Select = ({ text, array, register, id }: ISelectProps) => {
+const Select = ({ text, array, id, register }: ISelectProps) => {
   const opcoes = array.map((e) => {
     return (
       <option value={e.name} key={e.id}>

@@ -38,7 +38,6 @@ interface IUserContext {
   nameUser: string;
   categoryUser: string;
   techs: IUserTechs[];
-  setTechs: (techs: IUserTechs) => void;
 }
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
@@ -105,7 +104,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         nameUser,
         categoryUser,
         techs,
-        setTechs,
       }}
     >
       {children}
