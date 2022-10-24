@@ -1,6 +1,15 @@
 import { InputStyled, LabelStyled } from "./styles";
+import { UseFormRegister, FieldValues } from "react-hook-form";
 
-const Input = ({ type, placeholder, text, id, register }) => (
+interface IInputs {
+  type: string;
+  placeholder: string;
+  text: string;
+  id: string;
+  register: UseFormRegister<FieldValues>;
+}
+
+const Input = ({ type, placeholder, text, id, register }: IInputs) => (
   <>
     <LabelStyled htmlFor={id}>
       {text}

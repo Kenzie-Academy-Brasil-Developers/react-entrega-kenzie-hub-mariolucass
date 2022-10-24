@@ -1,21 +1,25 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { TechContext } from "../../contexts/TechContext";
+import { UseTechContext } from "../../contexts/TechContext";
 import { techsSchema } from "../../validations/techs";
 import Button from "../Buttons";
 import Input from "../Inputs";
 import Select from "../Selects";
 import { BackgroundModal } from "./styles";
 
+export interface IUserCreateTech {
+  title: string;
+  status: string;
+}
+
 const Modal = () => {
-  const { setModal, CreateTechs } = useContext(TechContext);
+  const { setModal, CreateTechs } = UseTechContext();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserCreateTech>({
     resolver: yupResolver(techsSchema),
   });
 
@@ -54,7 +58,6 @@ const Modal = () => {
         <span>{errors.title?.message}</span>
 
         <Select
-          name=""
           id="status"
           array={statusForTechs}
           text={"Selecionar Status"}
@@ -63,7 +66,12 @@ const Modal = () => {
 
         <span>{errors.status?.message}</span>
 
-        <Button type="submit" tipo={1} texto="Cadastrar Tecnologia" />
+        <Button
+          type="submit"
+          kind={1}
+          text="Cadastrar Tecnologia"
+          onClick={() => {}}
+        />
       </form>
     </BackgroundModal>
   );

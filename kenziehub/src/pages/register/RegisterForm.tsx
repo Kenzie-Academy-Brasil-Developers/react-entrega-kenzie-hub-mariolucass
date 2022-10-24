@@ -1,19 +1,25 @@
 import Button from "../../components/Buttons";
 import Input from "../../components/Inputs";
 import Select from "../../components/Selects";
-
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/registerUser";
-
 import { FormRegister } from "./styles";
-
+import { UseUserContext } from "../../contexts/UserContext";
 import "react-toastify/dist/ReactToastify.css";
-import { useContext } from "react";
-import { UserContext } from "../../contexts/UserContext";
+
+export interface IUserRegister {
+  email: string;
+  password: string;
+  confirmPass: string;
+  name: string;
+  bio: string;
+  contact: string;
+  course_module: string;
+}
 
 const RegisterForm = () => {
-  const { RegisterApi } = useContext(UserContext);
+  const { RegisterApi } = UseUserContext();
 
   const arrayOptions = [
     { name: "Primeiro Módulo", id: 1 },
@@ -28,7 +34,7 @@ const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IUserRegister>({
     resolver: yupResolver(registerSchema),
   });
 
@@ -44,7 +50,7 @@ const RegisterForm = () => {
         text={"Nome"}
         register={register}
       />
-      <span>{errors.nome?.message}</span>
+      <span>{errors.name?.message}</span>
 
       <Input
         id="email"
@@ -92,16 +98,15 @@ const RegisterForm = () => {
       <span>{errors.contact?.message}</span>
 
       <Select
-        name=""
         id="course_module"
         text={"Selecionar módulo"}
         array={arrayOptions}
         register={register}
       ></Select>
 
-      <span>{errors.courseModule?.message}</span>
+      <span>{errors.course_module?.message}</span>
 
-      <Button type="submit" texto="Cadastrar" tipo={2} />
+      <Button type="submit" text="Cadastrar" kind={2} onClick={() => {}} />
     </FormRegister>
   );
 };
