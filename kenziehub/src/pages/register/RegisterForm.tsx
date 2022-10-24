@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/registerUser";
 import { FormRegister } from "./styles";
-import "react-toastify/dist/ReactToastify.css";
 import { UseUserContext } from "../../contexts/UserContext";
+import "react-toastify/dist/ReactToastify.css";
 
 export interface IUserRegister {
   email: string;
@@ -18,15 +18,10 @@ export interface IUserRegister {
   course_module: string;
 }
 
-export interface IUserOptions {
-  name: string;
-  id: number;
-}
-
 const RegisterForm = () => {
   const { RegisterApi } = UseUserContext();
 
-  const arrayOptions: IUserOptions[] = [
+  const arrayOptions = [
     { name: "Primeiro Módulo", id: 1 },
     { name: "Segundo Módulo", id: 2 },
     { name: "Terceiro Módulo", id: 3 },

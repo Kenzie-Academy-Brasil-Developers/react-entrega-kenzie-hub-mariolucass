@@ -7,7 +7,7 @@ import Input from "../Inputs";
 import Select from "../Selects";
 import { BackgroundModal } from "./styles";
 
-interface IUserCreateTech {
+export interface IUserCreateTech {
   title: string;
   status: string;
 }
@@ -66,7 +66,12 @@ const Modal = () => {
 
         <span>{errors.status?.message}</span>
 
-        <Button type="submit" tipo={1} texto="Cadastrar Tecnologia" />
+        <Button
+          type="submit"
+          kind={1}
+          text="Cadastrar Tecnologia"
+          onClick={() => {}}
+        />
       </form>
     </BackgroundModal>
   );

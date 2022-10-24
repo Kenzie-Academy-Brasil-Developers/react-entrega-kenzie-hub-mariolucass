@@ -13,6 +13,7 @@ import {
   DashboardMain,
   DashboardWelcome,
 } from "./styles";
+
 import { apiHeader } from "../../services/axios";
 
 const Dashboard = () => {
@@ -25,23 +26,21 @@ const Dashboard = () => {
     if (isFiltered) {
       const updateList = async () => {
         const response = await apiHeader.get("/profile");
-
         setTechs(response.data.techs);
       };
-
       updateList();
     }
     /* eslint-disable */
   }, [listNew]);
 
   const tecnologies = isFiltered
-    ? listNew.map((element: IUserTechs) => {
+    ? listNew.map((element) => {
         return (
           <li key={element.id}>
             <h3>{element.title}</h3>
             <span>{element.status}</span>
             <div className="liButtons">
-              <button onClick={() => EditTechs(element.id)}>
+              <button onClick={() => {}}>
                 <img src={Editar} alt="editar" />
               </button>
 
@@ -57,9 +56,8 @@ const Dashboard = () => {
           <li key={element.id}>
             <h3>{element.title}</h3>
             <span>{element.status}</span>
-
             <div className="liButtons">
-              <button onClick={() => EditTechs(element.id)}>
+              <button onClick={() => {}}>
                 <img src={Editar} alt="editar" />
               </button>
 

@@ -1,7 +1,8 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
+import { IUserCreateTech } from "../../components/Modal";
 import { apiHeader } from "../../services/axios";
-import { UseUserContext } from "../UserContext";
+import { IUserTechs, UseUserContext } from "../UserContext";
 
 export const TechContext = createContext<ITechContext>({} as ITechContext);
 
@@ -10,12 +11,14 @@ interface ITechProviderProps {
 }
 
 interface ITechContext {
-  CreateTechs: (data: string) => void;
+  CreateTechs: (data: IUserCreateTech) => void;
   DeleteTechs: (data: string) => void;
-  EditTechs: (id: string, data: string) => void;
+  EditTechs: (id: string, data: IUserCreateTech) => void;
   setModal: (arg0: boolean) => void;
+
   isFiltered: boolean;
   modal: boolean;
+  listNew: IUserTechs[];
 }
 
 export const TechProvider = ({ children }: ITechProviderProps) => {
@@ -24,13 +27,14 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
   const [isFiltered, setIsFiltered] = useState<boolean>(false);
   const [listNew, setListNew] = useState(techs);
 
-  const CreateTechs = async (data: string) => {
+  const CreateTechs = async (data: IUserCreateTech) => {
     try {
       const response = await apiHeader.post(`/users/techs`, data);
       setListNew([...techs, response.data]);
+
       setIsFiltered(true);
-    } catch (error) {
-      toast.error(error);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
     }
   };
 
@@ -39,17 +43,17 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
       await apiHeader.delete(`/users/techs/${id}`);
       setListNew(techs.filter((e) => e.id !== id));
       setIsFiltered(true);
-    } catch (error) {
-      toast.error(error);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
     }
   };
 
-  const EditTechs = async (id: string, data: string) => {
+  const EditTechs = async (id: string, data: IUserCreateTech) => {
     try {
       const response = await apiHeader.put(`/users/techs/${id}`, data);
       setIsFiltered(true);
-    } catch (error) {
-      toast.error(error);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
     }
   };
 

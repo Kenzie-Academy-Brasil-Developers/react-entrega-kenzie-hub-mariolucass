@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-interface Props{
-  
+interface Props {
+  kind: number;
 }
 
-export const ButtonPrimario = styled.button`
-  width: ${({ kind } : ) => (kind !== 3 ? "100%" : "80px")};
+export const ButtonPrimario = styled.button<Props>`
+  width: ${({ kind }) => (kind !== 3 ? "100%" : "80px")};
   background-color: ${({ kind }) => {
     if (kind === 1) {
       return "var(--color-primary)";

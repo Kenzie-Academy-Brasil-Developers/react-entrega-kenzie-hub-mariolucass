@@ -1,11 +1,19 @@
 import { SelectStyled, LabelStyled } from "./styles";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
-interface ISelect {
-  text: string;
-  id: string;
+interface IUserOptions {
+  name: string;
+  id: number;
 }
 
-const Select = ({ text, array, register, id }: ISelect) => {
+interface ISelectProps {
+  text: string;
+  id: string;
+  array: IUserOptions[];
+  register: UseFormRegister<FieldValues>;
+}
+
+const Select = ({ text, array, register, id }: ISelectProps) => {
   const opcoes = array.map((e) => {
     return (
       <option value={e.name} key={e.id}>

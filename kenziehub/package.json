@@ -12,6 +12,7 @@
     "@types/react": "^18.0.21",
     "@types/react-animations": "^1.0.0",
     "@types/react-dom": "^18.0.6",
+    "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
     "axios": "^0.27.2",
     "framer-motion": "^7.5.2",

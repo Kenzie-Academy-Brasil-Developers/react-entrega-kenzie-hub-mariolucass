@@ -1,11 +1,12 @@
 import { InputStyled, LabelStyled } from "./styles";
+import { FieldValues, UseFormMethods } from "react-hook-form";
 
 interface IInputs {
   type: string;
   placeholder: string;
   text: string;
   id: string;
-  register: (id: string) => void;
+  register: UseFormMethods<FieldValues>;
 }
 
 const Input = ({ type, placeholder, text, id, register }: IInputs) => (

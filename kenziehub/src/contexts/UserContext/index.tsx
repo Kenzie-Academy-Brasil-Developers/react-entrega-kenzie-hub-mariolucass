@@ -20,14 +20,7 @@ interface IUserProviderProps {
 interface IUserResponse {
   name: string;
   course_module: string;
-}
-
-interface IUserContext {
-  RegisterApi: (data: IUserRegister) => void;
-  LoginApi: (data: IUserLogin) => void;
-  setUser: (data: IUserResponse) => void;
-  nameUser: string;
-  categoryUser: string;
+  techs: IUserTechs;
 }
 
 export interface IUserTechs {
@@ -38,17 +31,25 @@ export interface IUserTechs {
   updated_at: string;
 }
 
+interface IUserContext {
+  // setUser: (data: IUserResponse) => void;
+  RegisterApi: (data: IUserRegister) => void;
+  LoginApi: (data: IUserLogin) => void;
+  nameUser: string;
+  categoryUser: string;
+  techs: IUserTechs[];
+}
+
 export const UserProvider = ({ children }: IUserProviderProps) => {
+  const navigate = useNavigate();
   const [nameUser, setNameUser] = useState<string>("");
   const [categoryUser, setCategoryUser] = useState<string>("");
-  const [techs, setTechs] = useState([]);
-
-  const navigate = useNavigate();
+  const [techs, setTechs] = useState<IUserTechs[]>([]);
 
   const setUser = (data: IUserResponse) => {
     setNameUser(data.name);
     setCategoryUser(data.course_module);
-    setTechs(data.techs);
+    setTechs([data.techs]);
   };
 
   useEffect(() => {
@@ -59,7 +60,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
           const response = await apiHeader.get("/profile");
           setUser(response.data);
           navigate("/dashboard");
-        } catch (error) {
+        } catch (error: unknown) {
           toast.error("Por favor, faca o login novamente.");
           localStorage.removeItem("token:KenzieHub");
           navigate("/");
@@ -80,8 +81,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       setUser(response.data);
       toast.success("Login efetuado com sucesso.");
       navigate("/dashboard");
-    } catch (error) {
-      toast.error(error.response.data.message);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
     }
   };
 
@@ -90,8 +91,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       await api.post("/users", data);
       toast.success("Registro efetuado com sucesso.");
       navigate("/");
-    } catch (error) {
-      toast.error(error.response.data.message);
+    } catch (error: unknown) {
+      toast.error((error as Error).message);
     }
   };
 
@@ -103,7 +104,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         nameUser,
         categoryUser,
         techs,
-        setTechs,
       }}
     >
       {children}
