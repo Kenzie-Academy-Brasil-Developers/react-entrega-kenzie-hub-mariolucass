@@ -1,16 +1,16 @@
 import { InputStyled, LabelStyled } from "./styles";
 import { UseFormRegister } from "react-hook-form";
-import { IUserLogin } from "../../pages/login/LoginForm";
+import { IUserRegister } from "../../pages/register/RegisterForm";
 
 interface IInputs {
   type: string;
   placeholder: string;
   text: string;
-  id: "email" | "password";
-  register: UseFormRegister<IUserLogin>;
+  id: any;
+  register: UseFormRegister<IUserRegister>;
 }
 
-const Input = ({ type, placeholder, text, id, register }: IInputs) => (
+const InputRegister = ({ type, placeholder, text, id, register }: IInputs) => (
   <>
     <LabelStyled htmlFor={id}>
       {text}
@@ -24,4 +24,4 @@ const Input = ({ type, placeholder, text, id, register }: IInputs) => (
   </>
 );
 
-export default Input;
+export default InputRegister;

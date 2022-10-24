@@ -19,7 +19,7 @@ import { apiHeader } from "../../services/axios";
 const Dashboard = () => {
   const navigate = useNavigate();
   const { nameUser, categoryUser, techs } = useContext(UserContext);
-  const { DeleteTechs, EditTechs, setModal, modal, isFiltered, listNew } =
+  const { DeleteTechs, setModal, modal, isFiltered, listNew } =
     useContext(TechContext);
 
   useEffect(() => {

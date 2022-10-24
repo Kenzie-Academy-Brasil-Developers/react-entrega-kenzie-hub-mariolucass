@@ -1,12 +1,12 @@
 import Button from "../../components/Buttons";
-import Input from "../../components/Inputs";
-import Select from "../../components/Selects";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { registerSchema } from "../../validations/registerUser";
 import { FormRegister } from "./styles";
 import { UseUserContext } from "../../contexts/UserContext";
 import "react-toastify/dist/ReactToastify.css";
+import InputRegister from "../../components/InputsRegister";
+import SelectRegister from "../../components/Selects";
 
 export interface IUserRegister {
   email: string;
@@ -43,7 +43,7 @@ const RegisterForm = () => {
       <h3>Crie sua conta</h3>
       <span>Rapido e gratis vamos nessa.</span>
 
-      <Input
+      <InputRegister
         id="name"
         type="text"
         placeholder={"Digite aqui seu nome"}
@@ -52,7 +52,7 @@ const RegisterForm = () => {
       />
       <span>{errors.name?.message}</span>
 
-      <Input
+      <InputRegister
         id="email"
         type="text"
         placeholder={"Digite aqui seu e-mail"}
@@ -61,7 +61,7 @@ const RegisterForm = () => {
       />
       <span>{errors.email?.message}</span>
 
-      <Input
+      <InputRegister
         id="password"
         type="password"
         placeholder={"Digite aqui sua senha"}
@@ -70,7 +70,7 @@ const RegisterForm = () => {
       />
       <span>{errors.password?.message}</span>
 
-      <Input
+      <InputRegister
         id="confirmPass"
         type="password"
         placeholder={"Digite novamente sua senha"}
@@ -79,7 +79,7 @@ const RegisterForm = () => {
       />
       <span>{errors.confirmPass?.message}</span>
 
-      <Input
+      <InputRegister
         id="bio"
         type="text"
         placeholder={"Fale sobre você"}
@@ -88,7 +88,7 @@ const RegisterForm = () => {
       />
       <span>{errors.bio?.message}</span>
 
-      <Input
+      <InputRegister
         id="contact"
         type="text"
         placeholder={"Opção de contato"}
@@ -97,12 +97,12 @@ const RegisterForm = () => {
       />
       <span>{errors.contact?.message}</span>
 
-      <Select
+      <SelectRegister
         id="course_module"
         text={"Selecionar módulo"}
         array={arrayOptions}
         register={register}
-      ></Select>
+      />
 
       <span>{errors.course_module?.message}</span>
 
