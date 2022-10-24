@@ -1,6 +1,6 @@
 import { SelectStyled, LabelStyled } from "./styles";
 import { UseFormRegister } from "react-hook-form";
-import { IUserRegister } from "../../pages/register/RegisterForm";
+import { IUserCreateTech } from "../Modal";
 
 interface IUserOptions {
   name: string;
@@ -9,12 +9,12 @@ interface IUserOptions {
 
 interface ISelectProps {
   text: string;
-  id: "course_module";
+  id: "status";
   array: IUserOptions[];
-  register: UseFormRegister<IUserRegister>;
+  register: UseFormRegister<IUserCreateTech>;
 }
 
-const SelectRegister = ({ text, array, id, register }: ISelectProps) => {
+const SelectCreateTech = ({ text, array, id, register }: ISelectProps) => {
   const opcoes = array.map((e) => {
     return (
       <option value={e.name} key={e.id}>
@@ -31,4 +31,4 @@ const SelectRegister = ({ text, array, id, register }: ISelectProps) => {
   );
 };
 
-export default SelectRegister;
+export default SelectCreateTech;

@@ -1,16 +1,22 @@
 import { InputStyled, LabelStyled } from "./styles";
 import { UseFormRegister } from "react-hook-form";
-import { IUserLogin } from "../../pages/login/LoginForm";
+import { IUserCreateTech } from "../Modal";
 
 interface IInputs {
   type: string;
   placeholder: string;
   text: string;
-  id: "email" | "password";
-  register: UseFormRegister<IUserLogin>;
+  id: "title" | "status";
+  register: UseFormRegister<IUserCreateTech>;
 }
 
-const Input = ({ type, placeholder, text, id, register }: IInputs) => (
+const InputCreateTech = ({
+  type,
+  placeholder,
+  text,
+  id,
+  register,
+}: IInputs) => (
   <>
     <LabelStyled htmlFor={id}>
       {text}
@@ -24,4 +30,4 @@ const Input = ({ type, placeholder, text, id, register }: IInputs) => (
   </>
 );
 
-export default Input;
+export default InputCreateTech;

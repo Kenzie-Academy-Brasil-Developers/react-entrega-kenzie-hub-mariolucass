@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import { UseTechContext } from "../../contexts/TechContext";
 import { techsSchema } from "../../validations/techs";
 import Button from "../Buttons";
-import Input from "../Inputs";
-import Select from "../Selects";
+import InputCreateTech from "../InputsCreateTechs";
+import SelectCreateTech from "../SelectCreateTechs";
 import { BackgroundModal } from "./styles";
 
 export interface IUserCreateTech {
@@ -47,7 +47,7 @@ const Modal = () => {
             X
           </button>
         </div>
-        <Input
+        <InputCreateTech
           id="title"
           type="text"
           placeholder={"Digite aqui sua tech."}
@@ -57,7 +57,7 @@ const Modal = () => {
 
         <span>{errors.title?.message}</span>
 
-        <Select
+        <SelectCreateTech
           id="status"
           array={statusForTechs}
           text={"Selecionar Status"}
