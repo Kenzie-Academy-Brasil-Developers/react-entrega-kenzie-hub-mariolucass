@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 import { createContext, ReactNode, useContext, useState } from "react";
 import { toast } from "react-toastify";
 import { IUserCreateTech } from "../../components/Modal";
@@ -31,10 +32,15 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
     try {
       const response = await apiHeader.post(`/users/techs`, data);
       setListNew([...techs, response.data]);
+      console.log(data);
 
       setIsFiltered(true);
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error((error.response?.data as AxiosError).message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -43,8 +49,12 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
       await apiHeader.delete(`/users/techs/${id}`);
       setListNew(techs.filter((e) => e.id !== id));
       setIsFiltered(true);
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error((error.response?.data as AxiosError).message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -52,8 +62,12 @@ export const TechProvider = ({ children }: ITechProviderProps) => {
     try {
       await apiHeader.put(`/users/techs/${id}`, data);
       setIsFiltered(true);
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error((error.response?.data as AxiosError).message);
+      } else {
+        console.log(error);
+      }
     }
   };
 

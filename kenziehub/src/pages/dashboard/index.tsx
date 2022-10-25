@@ -5,7 +5,8 @@ import Modal from "../../components/Modal";
 import Lixeira from "../../assets/Vector.png";
 import Editar from "../../assets/Vector2.png";
 import { TechContext } from "../../contexts/TechContext";
-import { IUserTechs, UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/UserContext";
+import { apiHeader } from "../../services/axios";
 
 import {
   DashboardContainer,
@@ -14,18 +15,17 @@ import {
   DashboardWelcome,
 } from "./styles";
 
-import { apiHeader } from "../../services/axios";
-
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { nameUser, categoryUser, techs } = useContext(UserContext);
+  const { nameUser, categoryUser, techs, setTechs } = useContext(UserContext);
   const { DeleteTechs, setModal, modal, isFiltered, listNew } =
     useContext(TechContext);
 
   useEffect(() => {
     if (isFiltered) {
       const updateList = async () => {
-        await apiHeader.get("/profile");
+        const response = await apiHeader.get("/profile");
+        setTechs(response.data.techs);
       };
       updateList();
     }
@@ -50,7 +50,7 @@ const Dashboard = () => {
           </li>
         );
       })
-    : techs.map((element: IUserTechs) => {
+    : techs.map((element) => {
         return (
           <li key={element.id}>
             <h3>{element.title}</h3>
@@ -72,16 +72,27 @@ const Dashboard = () => {
     <DashboardContainer>
       <DashboardHeader>
         <h1>Kenzie Hub</h1>
+        <div className="buttonsHeader">
+          <Button
+            type={"button"}
+            text={"Works"}
+            onClick={() => {
+              window.localStorage.clear();
+              navigate("/");
+            }}
+            kind={3}
+          />
 
-        <Button
-          type={"button"}
-          text={"Sair"}
-          onClick={() => {
-            window.localStorage.clear();
-            navigate("/");
-          }}
-          kind={3}
-        />
+          <Button
+            type={"button"}
+            text={"Sair"}
+            onClick={() => {
+              window.localStorage.clear();
+              navigate("/");
+            }}
+            kind={3}
+          />
+        </div>
       </DashboardHeader>
 
       <DashboardWelcome>

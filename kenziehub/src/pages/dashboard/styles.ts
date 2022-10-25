@@ -171,6 +171,11 @@ export const DashboardHeader = styled.header`
     align-items: center;
     justify-content: space-evenly;
   }
+
+  .buttonsHeader {
+    display: flex;
+    gap: 1rem;
+  }
 `;
 
 export const DashboardFooter = styled.footer`
