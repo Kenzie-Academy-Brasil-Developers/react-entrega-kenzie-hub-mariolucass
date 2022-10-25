@@ -1,3 +1,4 @@
+import axios, { AxiosError } from "axios";
 import {
   createContext,
   ReactNode,
@@ -20,7 +21,6 @@ interface IUserProviderProps {
 interface IUserResponse {
   name: string;
   course_module: string;
-  techs: IUserTechs;
 }
 
 export interface IUserTechs {
@@ -32,7 +32,7 @@ export interface IUserTechs {
 }
 
 interface IUserContext {
-  // setUser: (data: IUserResponse) => void;
+  setTechs: React.Dispatch<React.SetStateAction<IUserTechs[]>>;
   RegisterApi: (data: IUserRegister) => void;
   LoginApi: (data: IUserLogin) => void;
   nameUser: string;
@@ -49,7 +49,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const setUser = (data: IUserResponse) => {
     setNameUser(data.name);
     setCategoryUser(data.course_module);
-    setTechs([data.techs]);
   };
 
   useEffect(() => {
@@ -59,8 +58,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         try {
           const response = await apiHeader.get("/profile");
           setUser(response.data);
+          setTechs(response.data.techs);
           navigate("/dashboard");
-        } catch (error: unknown) {
+        } catch (error) {
           toast.error("Por favor, faca o login novamente.");
           localStorage.removeItem("token:KenzieHub");
           navigate("/");
@@ -78,11 +78,16 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       const response = await api.post("/sessions", data);
       const token = response.data.token;
       localStorage.setItem("token:KenzieHub", token);
-      setUser(response.data);
+      setUser(response.data.user);
+      setTechs(response.data.user.techs);
       toast.success("Login efetuado com sucesso.");
       navigate("/dashboard");
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error((error.response?.data as AxiosError).message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -91,8 +96,12 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       await api.post("/users", data);
       toast.success("Registro efetuado com sucesso.");
       navigate("/");
-    } catch (error: unknown) {
-      toast.error((error as Error).message);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        toast.error((error.response?.data as AxiosError).message);
+      } else {
+        console.log(error);
+      }
     }
   };
 
@@ -104,6 +113,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         nameUser,
         categoryUser,
         techs,
+        setTechs,
       }}
     >
       {children}
